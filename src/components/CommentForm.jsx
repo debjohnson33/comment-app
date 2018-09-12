@@ -35,7 +35,7 @@ export default class CommentForm extends Component {
     hasInvalidFields = () => {
         const { comment, author } = this.state;
 
-        if (comment.trim() !== '' && author.trim() != '') {
+        if (comment.trim() !== '' && author.trim() !== '') {
             return false;
         }
 
