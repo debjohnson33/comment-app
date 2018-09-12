@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-testing-library';
 import CommentList from '../CommentList';
+import waitForExpect from 'wait-for-expect';
 
 describe('Comment List', () => {
     test('It renders a list of comment cards with their comment and author tag', () => {
@@ -19,6 +20,16 @@ describe('Comment List', () => {
             comments: [ comment1, comment2 ]
         }
         // Act
-        render(<CommentList {...props} />)
+        const { getByText } = render(<CommentList {...props} />)
+        // Assert
+        const firstCommentNode = getByText(comment1.comment);
+        const firstAuthorTagNode = getByText(`- ${comment1.author}`);
+        const secondCommentNode = getByText(comment2.comment);
+        const secondAuthorTagNode = getByText(`- ${comment2.author}`);
+
+        expect(firstCommentNode).toBeDefined();
+        expect(firstAuthorTagNode).toBeDefined();
+        expect(secondCommentNode).toBeDefined();
+        expect(secondTagNode).toBeDefined();
     })
 })
