@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent, wait, cleanup, getAllByTestId } from 'react-testing-library';
 import axios from 'axios';
 import Comments from '../Comments';
+import waitForExpect from 'wait-for-expect';
 
 const comment1 = {
     id: 1,
@@ -23,6 +24,18 @@ describe('Comments Screen', () => {
     })
 
     test('It fetches comments and renders them to the page', async() => {
-        render(<Comments />)
+        const { getByText } = render(<Comments />)
+
+        await wait(() => getByText(comment1.comment))
+
+        const firstCommentNode = getByText(comment1.comment)
+        const firstAuthorTagNode = getByText(`- ${comment1.author}`)
+        const secondCommentNode = getByText(comment2.comment)
+        const secondAuthorTagNode = getByText(`- ${comment2.author}`)
+
+        expect(firstCommentNode).toBeDefined()
+        expect(firstAuthorTagNode).toBeDefined()
+        expect(secondCommentNode).toBeDefined()
+        expect(secondAuthorTagNode).toBeDefined()
     })
 })
