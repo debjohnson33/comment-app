@@ -30,6 +30,6 @@ describe('Comment List', () => {
         expect(firstCommentNode).toBeDefined();
         expect(firstAuthorTagNode).toBeDefined();
         expect(secondCommentNode).toBeDefined();
-        expect(secondTagNode).toBeDefined();
+        expect(secondAuthorTagNode).toBeDefined();
     })
 })
